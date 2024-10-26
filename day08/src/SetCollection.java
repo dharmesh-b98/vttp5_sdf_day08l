@@ -27,7 +27,7 @@ public class SetCollection {
         
 
         for (String input : inputList2){
-            List<String> subList1 = new ArrayList<>(inputList2);  // method to duplicate a list
+            List<String> subList1 = new ArrayList<>(inputList2);  // shallow copy method to duplicate a list
             subList1.remove(input);
             for (String subinput1 : subList1){
                 List<String> subList2 = new ArrayList<>(subList1);
@@ -48,7 +48,52 @@ public class SetCollection {
         }
 
 
+        // Given 4 digits or 4 alphabets
+        // Find the number of permutations
+        // put the permutation into Set Collection
+        String word = "ABCD";
+        String[] chr = new String[word.length()];
+        for (int i = 0; i < word.length(); i++) {
+            chr[i] = String.valueOf(word.charAt(i));
+        }
 
+        List<String> combinations = new ArrayList<>();
+
+        int loop = 0;
+        while (loop < word.length()) {
+            int count = 0;
+            for (int i = 0; i < word.length(); i++) {
+                String temp = "";
+                temp = chr[i];
+
+                for (int j = i + 1; j < word.length(); j++) {
+                    temp = temp + chr[j];
+                }
+                if (temp.length() == word.length())
+                    combinations.add((temp));
+
+            }
+
+            String tmp = "";
+            tmp = chr[count]; 
+            for(int cnt = 0; cnt < word.length(); cnt++) {
+                if (cnt < (word.length() -1)){
+                    chr[cnt] = chr[cnt + 1];
+                }
+                else {
+                    chr[cnt] = tmp;
+                } 
+            } 
+
+            loop++;
+        }
+
+        for (String a : combinations) {
+            System.out.println(a.toString());
+        }
+
+
+        
 
 
     }
